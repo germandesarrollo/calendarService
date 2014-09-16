@@ -16,90 +16,90 @@ def index() {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [calendarInstanceList: Calendar.list(params), calendarInstanceTotal: Calendar.count()]
+        [userInstanceList: User.list(params), userInstanceTotal: User.count()]
     }
 
     def create() {
-        [calendarInstance: new Calendar(params)]
+        [userInstance: new User (params)]
     }
 
     def save() {
-        def calendarInstance = new Calendar(params)
-        if (!calendarInstance.save(flush: true)) {
-            render(view: "create", model: [calendarInstance: calendarInstance])
+        def userInstance = new User(params)
+        if (!userInstance.save(flush: true)) {
+            render(view: "create", model: [userInstance: userInstance])
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'calendar.label', default: 'Calendar'), calendarInstance.id])
-        redirect(action: "show", id: calendarInstance.id)
+        flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
+        redirect(action: "show", id: userInstance.id)
     }
 
     def show(Long id) {
-        def calendarInstance = Calendar.get(id)
-        if (!calendarInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'calendar.label', default: 'Calendar'), id])
+        def userInstance = Calendar.get(id)
+        if (!userInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'Calendar'), id])
             redirect(action: "list")
             return
         }
 
-        [calendarInstance: calendarInstance]
+        [userInstance: userInstance]
     }
 
     def edit(Long id) {
-        def calendarInstance = Calendar.get(id)
-        if (!calendarInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'calendar.label', default: 'Calendar'), id])
+        def userInstance = Calendar.get(id)
+        if (!userInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'Calendar'), id])
             redirect(action: "list")
             return
         }
 
-        [calendarInstance: calendarInstance]
+        [userInstance: userInstance]
     }
 
     def update(Long id, Long version) {
-        def calendarInstance = Calendar.get(id)
-        if (!calendarInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'calendar.label', default: 'Calendar'), id])
+        def userInstance = Calendar.get(id)
+        if (!userInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'Calendar'), id])
             redirect(action: "list")
             return
         }
 
         if (version != null) {
-            if (calendarInstance.version > version) {
-                calendarInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'calendar.label', default: 'Calendar')] as Object[],
+            if (userInstance.version > version) {
+                userInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                          [message(code: 'user.label', default: 'Calendar')] as Object[],
                           "Another user has updated this Calendar while you were editing")
-                render(view: "edit", model: [calendarInstance: calendarInstance])
+                render(view: "edit", model: [userInstance: userInstance])
                 return
             }
         }
 
-        calendarInstance.properties = params
+        userInstance.properties = params
 
-        if (!calendarInstance.save(flush: true)) {
-            render(view: "edit", model: [calendarInstance: calendarInstance])
+        if (!userInstance.save(flush: true)) {
+            render(view: "edit", model: [userInstance: userInstance])
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'calendar.label', default: 'Calendar'), calendarInstance.id])
-        redirect(action: "show", id: calendarInstance.id)
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'Calendar'), userInstance.id])
+        redirect(action: "show", id: userInstance.id)
     }
 
     def delete(Long id) {
-        def calendarInstance = Calendar.get(id)
-        if (!calendarInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'calendar.label', default: 'Calendar'), id])
+        def userInstance = Calendar.get(id)
+        if (!userInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'Calendar'), id])
             redirect(action: "list")
             return
         }
 
         try {
-            calendarInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'calendar.label', default: 'Calendar'), id])
+            userInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'Calendar'), id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'calendar.label', default: 'Calendar'), id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'user.label', default: 'Calendar'), id])
             redirect(action: "show", id: id)
         }
     }
