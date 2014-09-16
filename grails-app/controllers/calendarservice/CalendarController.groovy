@@ -5,7 +5,8 @@ import grails.converters.deep.JSON
 import org.springframework.dao.DataIntegrityViolationException
 
 class CalendarController {
- static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
    
     
      def index() {
