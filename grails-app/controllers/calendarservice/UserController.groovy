@@ -11,12 +11,12 @@ static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 
 def index() {
-        redirect(action: "list", params: params)
+        redirect(action: "listuser", params: params)
     }
 
-    def list(Integer max) {
+    def listuser(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [userInstanceList: User.list(params), userInstanceTotal: User.count()]
+        [userInstanceList: User.listuser(params), userInstanceTotal: User.count()]
     }
 
     def create() {
@@ -38,7 +38,7 @@ def index() {
         def userInstance = Calendar.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'Calendar'), id])
-            redirect(action: "list")
+            redirect(action: "listuser")
             return
         }
 
@@ -49,7 +49,7 @@ def index() {
         def userInstance = Calendar.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'Calendar'), id])
-            redirect(action: "list")
+            redirect(action: "listuser")
             return
         }
 
@@ -60,7 +60,7 @@ def index() {
         def userInstance = Calendar.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'Calendar'), id])
-            redirect(action: "list")
+            redirect(action: "listuser")
             return
         }
 
@@ -89,14 +89,14 @@ def index() {
         def userInstance = Calendar.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'Calendar'), id])
-            redirect(action: "list")
+            redirect(action: "listuser")
             return
         }
 
         try {
             userInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'Calendar'), id])
-            redirect(action: "list")
+            redirect(action: "listuser")
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'user.label', default: 'Calendar'), id])
@@ -107,14 +107,6 @@ def index() {
 def test(){
         
         render "<hola>test</hola>"
-    }
-def find){
-        
-        render "<hola>find</hola>"
-    }
-def create(){
-        
-        render "<hola>create</hola>"
     }
 def follow(){
         
