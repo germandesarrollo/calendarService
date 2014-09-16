@@ -27,7 +27,8 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-        url= "jdbc:mysql://localhost/calendardb"     pooled = true
+        url= "jdbc:mysql://localhost/calendardb"   
+        pooled = true
             properties {
                maxActive = -1
                minEvictableIdleTimeMillis=1800000

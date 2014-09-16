@@ -1,5 +1,7 @@
 package calendarservice
-
+import calendarservice.Calendar
+import grails.converters.JSON
+import grails.converters.deep.JSON
 import org.springframework.dao.DataIntegrityViolationException
 
 class CalendarController {
@@ -103,5 +105,13 @@ class CalendarController {
     def test(){
         
         render "<hola>hola mundo</hola>"
+    }
+    
+    def listCalendars()
+    {
+        
+        def list = Calendar.findAll()
+        def json = list as JSON
+        render json
     }
 }
