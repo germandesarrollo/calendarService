@@ -106,6 +106,26 @@ def index() {
 
 def test(){
         
-        render "<hola>hola mundo</hola>"
+        render "<hola>test</hola>"
+    }
+def find){
+        
+        render "<hola>find</hola>"
+    }
+def create(){
+        
+        render "<hola>create</hola>"
+    }
+def follow(){
+        
+        render "<hola>follow</hola>"
+    }
+def unfolow(){
+        
+        render "<hola>unfollow</hola>"
+    }
+def edituser(){
+        
+        render "<hola>useredit</hola>"
     }
 }
