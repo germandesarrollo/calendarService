@@ -15,8 +15,9 @@ class User {
     
     static constraints = {
     sex nullable: true
-    password nullable: true
+    password nullable: true, size: 5..15
     facebookid nullable: true
+   
     birthDate blank: false
     }
 }
