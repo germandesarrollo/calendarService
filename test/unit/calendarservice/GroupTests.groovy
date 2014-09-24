@@ -12,6 +12,6 @@ import org.junit.*
 class GroupTypeTests {
 
     void testSomething() {
-       fail "Implement me"
+        fail "Implement me"
     }
 }

@@ -13,7 +13,7 @@ grails.project.source.level = 1.6
 
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
-        inherits("global") {
+    inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
@@ -30,7 +30,8 @@ grails.project.dependency.resolution = {
 
         mavenLocal()
         mavenCentral()
-
+        mavenRepo "http://maven.springframework.org/release/"
+        mavenRepo "http://repo.spring.io/milestone/"
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
@@ -40,16 +41,30 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-  runtime 'mysql:mysql-connector-java:5.1.18'
+        runtime 'mysql:mysql-connector-java:5.1.18'
         // runtime 'mysql:mysql-connector-java:5.1.22'
+        compile 'org.springframework.social:spring-social-core:1.0.1.RELEASE'
+        compile 'org.springframework.social:spring-social-facebook:1.0.1.RELEASE'
+
     }
 
     plugins {
+        
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
         runtime ":resources:1.2"
-
-        // Uncomment these (or add new ones) to enable additional resources capabilities
+        runtime ":facebook-sdk:2.0.0"
+        compile ":spring-security-core:2.0-RC4"        
+//        compile ":spring-security-facebook:0.15.4-CORE2"
+        compile":spring-security-twitter:0.6.2"
+        
+        //        
+        //twitter
+        //        
+        //        
+        //
+        ////
+        //// Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
         //runtime ":cached-resources:1.0"
         //runtime ":yui-minify-resources:0.1.5"

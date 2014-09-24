@@ -1,3 +1,6 @@
+
+import calendarservice.Requestmap
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -59,6 +62,20 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+/////FACEBOOK
+grails.plugin.facebooksdk.apiVersion = 'v1.0'
+grails.plugin.facebooksdk.tokenRetrievalRetryCount = 10
+grails.controllers.defaultScope = 'prototype'
+grails.plugin.facebooksdk.customSelector = 'jQuery'
+//
+
+//springsecurity
+
+
+
+
+
+    
 environments {
     development {
         grails.logging.jul.usebridge = true
@@ -69,7 +86,29 @@ environments {
     }
 }
 
+grails.plugin.springsecurity.rejectIfNoRule = true
+grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+
+
+
+grails.plugin.springsecurity.interceptUrlMap = [
+   '/':                  ['permitAll'],
+   '/index':             ['permitAll'],
+   '/index.gsp':         ['permitAll'],
+   '/assets/**':         ['permitAll'],
+   '/**/js/**':          ['permitAll'],
+   '/**/css/**':         ['permitAll'],
+   '/**/images/**':      ['permitAll'],
+   '/**/favicon.ico':    ['permitAll'],
+   '/login/**':          ['permitAll'],
+   '/logout/**':         ['permitAll'],
+   '/secure/**':         ['ROLE_ADMIN'],
+   '/finance/**':        ['ROLE_FINANCE', 'isFullyAuthenticated()'],
+]
+
+
 // log4j configuration
+
 log4j = {
     // Example of changing the log pattern for the default console appender:
     //

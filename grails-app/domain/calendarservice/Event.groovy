@@ -10,8 +10,8 @@ class Event {
     String description
     Integer Valoration
     static constraints = {
-     link nullable: true
-     description nullable: true
-     duration nullable: true
+        link nullable: true
+        description nullable: true
+        duration nullable: true
     }
 }

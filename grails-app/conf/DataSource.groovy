@@ -3,7 +3,7 @@ dataSource {
     dbCreate = "update"
     url= "jdbc:mysql://localhost/calendardb"
     driverClassName = "com.mysql.jdbc.Driver"
-      dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+    dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
     username = "calendaruser"
     password = "CalendarUser"
 }
@@ -17,27 +17,27 @@ environments {
     development {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-        url= "jdbc:mysql://localhost/calendardb"   }
+            url= "jdbc:mysql://localhost/calendardb"   }
     }
     test {
         dataSource {
             dbCreate = "update"
-       url= "jdbc:mysql://localhost/calendardb"   }
+            url= "jdbc:mysql://localhost/calendardb"   }
     }
     production {
         dataSource {
             dbCreate = "update"
-        url= "jdbc:mysql://localhost/calendardb"   
-        pooled = true
+            url= "jdbc:mysql://localhost/calendardb"   
+            pooled = true
             properties {
-               maxActive = -1
-               minEvictableIdleTimeMillis=1800000
-               timeBetweenEvictionRunsMillis=1800000
-               numTestsPerEvictionRun=3
-               testOnBorrow=true
-               testWhileIdle=true
-               testOnReturn=true
-               validationQuery="SELECT 1"
+                maxActive = -1
+                minEvictableIdleTimeMillis=1800000
+                timeBetweenEvictionRunsMillis=1800000
+                numTestsPerEvictionRun=3
+                testOnBorrow=true
+                testWhileIdle=true
+                testOnReturn=true
+                validationQuery="SELECT 1"
             }
         }
     }

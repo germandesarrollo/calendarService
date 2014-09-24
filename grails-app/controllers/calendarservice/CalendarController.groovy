@@ -9,7 +9,7 @@ class CalendarController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
    
     
-     def index() {
+    def index() {
         redirect(action: "list", params: params)
     }
 
@@ -66,7 +66,7 @@ class CalendarController {
         if (version != null) {
             if (calendarInstance.version > version) {
                 calendarInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'calendar.label', default: 'Calendar')] as Object[],
+                    [message(code: 'calendar.label', default: 'Calendar')] as Object[],
                           "Another user has updated this Calendar while you were editing")
                 render(view: "edit", model: [calendarInstance: calendarInstance])
                 return

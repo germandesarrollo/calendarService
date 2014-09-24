@@ -1,6 +1,9 @@
 package calendarservice
 
 class CategoryController {
-
-    def index() { }
+    static scaffold = Category
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    def index() { 
+    
+    }
 }
