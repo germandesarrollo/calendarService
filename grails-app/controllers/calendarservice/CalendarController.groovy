@@ -111,7 +111,7 @@ class CalendarController {
     def listCalendars()
     {
         
-        def list = Calendar.findAll()
+        def list = Calendar.findAll("select DISTINCT e.* from calendardb.user u,calendar c,calendar_event ce,calendardb.event e where u.email='walter.noelia@gmail.com' and u.id=c.owner_id and c.id=ce.calendar_id and ce.event_id=e.id")
         def json = list as JSON
         render json
     }
