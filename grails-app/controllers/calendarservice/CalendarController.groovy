@@ -103,8 +103,8 @@ class CalendarController {
     }
     
     def test(){
-        
-        render "<hola>hola mundo</hola>"
+   render grailsApplication.config.responses.simple.bad.toString()
+ //       render "<hola>hola mundo</hola>"
     }
     
     def listCalendars()
@@ -114,4 +114,24 @@ class CalendarController {
         def json = list as JSON
         render json
     }
+    
+    
+    
+    def createCalendar(){
+        println (request.JSON)
+        def userId=request.JSON.userId
+        def description=request.JSON.description
+        def nameCalendar=request.JSON.name
+        User user=User.get(userId)
+        Calendar calendar = new Calendar()
+       calendar.name=nameCalendar
+       calendar.description =description
+       calendar.owner=user
+        if (calendar.save(flush:true))
+        render grailsApplication.config.responses.simple.good.toString() 
+        else
+         render grailsApplication.config.responses.simple.bad.toString() 
+    }
+    
+    
 }
